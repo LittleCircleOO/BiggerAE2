@@ -1,47 +1,100 @@
-import net.fabricmc.loom.task.RemapJarTask
-
 plugins {
-    alias libs.plugins.architectury
-    alias libs.plugins.architectury.loom
-    alias libs.plugins.machete // automatic jar compressing on build
-    alias libs.plugins.shadow
+    id 'fabric-loom' version '1.7-SNAPSHOT'
+    id 'maven-publish'
 }
 
-apply plugin: "dev.architectury.loom"
-apply plugin: "java"
-apply plugin: "architectury-plugin"
-apply plugin: "maven-publish"
+version = project.mod_version
+group = project.maven_group
 
-
-architectury {
-    compileOnly()
-    minecraft = libs.versions.minecraft
+base {
+    archivesName = project.archives_base_name
 }
 
-tasks.register('remapSlimJar', RemapJarTask) {
-    dependsOn(jar)
-    inputFile.set jar.archiveFile
+repositories {
+    // Add repositories to retrieve artifacts from in here.
+    // You should only use this when depending on other mods because
+    // Loom adds the essential maven repositories to download Minecraft and libraries from automatically.
+    // See https://docs.gradle.org/current/userguide/declaring_repositories.html
+    // for more information about repositories.
+
+    //AE2
+    maven {
+        name "Modmaven"
+        url "https://modmaven.dev/"
+        // For Gradle 5.1 and above, limit it to just AE2
+        content {
+            includeGroup 'appeng'
+        }
+    }
+
+    // Registrate Refabricated is hosted on this maven.
+    maven { url = "https://mvn.devos.one/snapshots/" }
+
 }
 
-group = maven_group
-
-// Formats the mod version to include the loader, Minecraft version, and build number (if present)
-String buildNumber = System.getenv("GITHUB_ACTION_NUMBER")
-version = "${mod_version}" + (buildNumber != null ? "-build.${System.getenv("GITHUB_RUN_NUMBER")}" : "")
-
-apply from: "$rootDir/gradle/scripts/architectury_loom.gradle"
-apply from: "$rootDir/gradle/scripts/capabilities.gradle"
-apply from: "$rootDir/gradle/scripts/repositories.gradle"
-apply from: "$rootDir/gradle/scripts/dependencies.gradle"
-apply from: "$rootDir/gradle/scripts/resources.gradle"
-apply from: "$rootDir/gradle/scripts/jars.gradle"
-apply from: "$rootDir/gradle/scripts/publishing.gradle"
-
-tasks.withType(JavaCompile) {
-    options.encoding = "UTF-8"
+fabricApi {
+    configureDataGeneration()
 }
 
-machete {
-    // disable machete locally for faster builds
-    enabled = false
+dependencies {
+    // To change the versions see the gradle.properties file
+    minecraft "com.mojang:minecraft:${project.minecraft_version}"
+    mappings loom.officialMojangMappings()
+    modImplementation "net.fabricmc:fabric-loader:${project.loader_version}"
+
+    // Fabric API. This is technically optional, but you probably want it anyway.
+    modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
+
+    // depend on and include Registrate.
+    modImplementation(include("com.tterrag.registrate_fabric:Registrate:${project.registrate_version}"))
+
+    //AE2
+    modImplementation "appeng:appliedenergistics2-fabric:15.2.12"
+
+}
+
+processResources {
+    inputs.property "version", project.version
+
+    filesMatching("fabric.mod.json") {
+        expand "version": project.version
+    }
+}
+
+tasks.withType(JavaCompile).configureEach {
+    it.options.release = 17
+}
+
+java {
+    // Loom will automatically attach sourcesJar to a RemapSourcesJar task and to the "build" task
+    // if it is present.
+    // If you remove this line, sources will not be generated.
+    withSourcesJar()
+
+    sourceCompatibility = JavaVersion.VERSION_17
+    targetCompatibility = JavaVersion.VERSION_17
+}
+
+jar {
+    from("LICENSE") {
+        rename { "${it}_${project.base.archivesName.get()}"}
+    }
+}
+
+// configure the maven publication
+publishing {
+    publications {
+        create("mavenJava", MavenPublication) {
+            artifactId = project.archives_base_name
+            from components.java
+        }
+    }
+
+    // See https://docs.gradle.org/current/userguide/publishing_maven.html for information on how to set up publishing.
+    repositories {
+        // Add repositories to publish to here.
+        // Notice: This block does NOT have the same function as the block in the top level.
+        // The repositories here will be used for publishing your artifact, not for
+        // retrieving dependencies.
+    }
 }

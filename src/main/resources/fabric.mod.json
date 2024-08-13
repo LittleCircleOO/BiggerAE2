@@ -1,0 +1,41 @@
+{
+	"schemaVersion": 1,
+	"id": "bigger_ae2",
+	"version": "${version}",
+	"name": "Bigger AE2",
+	"description": "A mod added more ae cells and so on.",
+	"authors": [
+		"DancingSnow", "LittleCircle_OO"
+	],
+	"contact": {
+		"homepage": "https://github.com/GregTech-Exploring-Pioneer/BiggerAE2",
+		"sources": "https://github.com/GregTech-Exploring-Pioneer/BiggerAE2"
+	},
+	"license": "MIT",
+	"icon": "assets/bigger_ae2/icon.png",
+	"environment": "*",
+	"entrypoints": {
+		"main": [
+			"cn.dancingsnow.bigger_ae2.BiggerAE2Base"
+		],
+		"client": [
+			"cn.dancingsnow.bigger_ae2.client.BiggerAE2Client"
+		]
+		"fabric-datagen": [
+			"cn.dancingsnow.bigger_ae2.BiggerAE2DataGenerator"
+		]
+	},
+	"mixins": [
+		"bigger_ae2.mixins.json"
+	],
+	"depends": {
+		"fabricloader": ">=0.15.11",
+		"minecraft": "~1.20.1",
+		"java": ">=17",
+		"fabric-api": "*",
+		"ae2": ">=15.0.15"
+	},
+	"suggests": {
+		"another-mod": "*"
+	}
+}
