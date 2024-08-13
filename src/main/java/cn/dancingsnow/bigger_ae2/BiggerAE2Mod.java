@@ -5,7 +5,6 @@ import appeng.api.storage.StorageCells;
 import appeng.api.upgrades.Upgrades;
 import appeng.core.definitions.AEItems;
 import appeng.core.localization.GuiText;
-import cn.dancingsnow.bigger_ae2.client.BiggerAE2Client;
 import cn.dancingsnow.bigger_ae2.data.generator.BiggerAE2Datagen;
 import cn.dancingsnow.bigger_ae2.init.ModBlockEntities;
 import cn.dancingsnow.bigger_ae2.init.ModBlocks;
@@ -17,14 +16,8 @@ import com.mojang.logging.LogUtils;
 
 import com.tterrag.registrate.Registrate;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraftforge.eventbus.api.IEventBus;
-import net.minecraftforge.fml.DistExecutor;
-import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
-import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import org.slf4j.Logger;
 
-@Mod(BiggerAE2Mod.MOD_ID)
 public class BiggerAE2Mod {
 
     public static final String MOD_ID = "bigger_ae2";
@@ -34,7 +27,6 @@ public class BiggerAE2Mod {
 
 
     public BiggerAE2Mod() {
-        DistExecutor.unsafeRunForDist(() -> BiggerAE2Client::new, () -> BiggerAE2Server::new);
 
         ModCreativeTab.register();
         ModItems.register();
@@ -48,9 +40,8 @@ public class BiggerAE2Mod {
             BiggerAE2Mod.LOGGER.debug("Applied Flux not installed, passed");
         }
 
-        IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
-        modEventBus.addListener(BiggerAE2Mod::initUpgrades);
-        modEventBus.addListener(BiggerAE2Mod::initStorageCells);
+        initUpgrades();
+        initStorageCells();
 
         BiggerAE2Datagen.init();
     }
@@ -59,7 +50,7 @@ public class BiggerAE2Mod {
         return new ResourceLocation(MOD_ID, path);
     }
 
-    private static void initUpgrades(FMLCommonSetupEvent event) {
+    private static void initUpgrades() {
         var storageCellGroup = GuiText.StorageCells.getTranslationKey();
 
         Upgrades.add(AEItems.VOID_CARD, ModItems.QUANTUM_ITEM_CELL, 1, storageCellGroup);
@@ -68,7 +59,7 @@ public class BiggerAE2Mod {
         Upgrades.add(AEItems.VOID_CARD, ModItems.SINGULARITY_FLUID_CELL, 1, storageCellGroup);
     }
 
-    private static void initStorageCells(FMLCommonSetupEvent event) {
+    private static void initStorageCells() {
         StorageCells.addCellHandler(DigitalSingularityCellItem.HANDLER);
     }
 }
