@@ -10,7 +10,6 @@ import cn.dancingsnow.bigger_ae2.init.ModBlockEntities;
 import cn.dancingsnow.bigger_ae2.init.ModBlocks;
 import cn.dancingsnow.bigger_ae2.init.ModCreativeTab;
 import cn.dancingsnow.bigger_ae2.init.ModItems;
-import cn.dancingsnow.bigger_ae2.integration.appliedflux.AppliedFluxItems;
 import cn.dancingsnow.bigger_ae2.item.cell.DigitalSingularityCellItem;
 import com.mojang.logging.LogUtils;
 
@@ -33,12 +32,7 @@ public class BiggerAE2Mod {
         ModBlocks.register();
         ModBlockEntities.register();
 
-        try {
-            Class.forName("com.glodblock.github.appflux.common.me.key.type.FluxKeyType");
-            AppliedFluxItems.register();
-        } catch (ClassNotFoundException e) {
-            BiggerAE2Mod.LOGGER.debug("Applied Flux not installed, passed");
-        }
+        //REMOVED:AppliedFluxIntegration
 
         initUpgrades();
         initStorageCells();
