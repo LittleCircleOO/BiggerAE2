@@ -9,7 +9,7 @@ import com.tterrag.registrate.util.entry.BlockEntry;
 import net.minecraft.data.recipes.RecipeCategory;
 import net.minecraft.data.recipes.ShapelessRecipeBuilder;
 import net.minecraft.world.item.BlockItem;
-import net.minecraftforge.client.model.generators.ConfiguredModel;
+import io.github.fabricators_of_create.porting_lib.models.generators.ConfiguredModel;
 
 import static cn.dancingsnow.bigger_ae2.BiggerAE2Mod.REGISTRATE;
 

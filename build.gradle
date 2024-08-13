@@ -30,6 +30,9 @@ repositories {
     // Registrate Refabricated is hosted on this maven.
     maven { url = "https://mvn.devos.one/snapshots/" }
 
+    // Porting Lib
+    maven { url = "https://mvn.devos.one/releases/" }
+
 }
 
 fabricApi {
@@ -55,6 +58,8 @@ dependencies {
     compileOnly 'org.projectlombok:lombok:1.18.34'
     annotationProcessor 'org.projectlombok:lombok:1.18.34'
 
+    //Porting Lib
+    modImplementation(include("io.github.fabricators_of_create.Porting-Lib:models:2.3.4+1.20.1"))
 }
 
 processResources {
