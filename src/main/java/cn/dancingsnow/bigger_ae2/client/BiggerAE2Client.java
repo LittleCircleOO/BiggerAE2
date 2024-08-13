@@ -6,10 +6,13 @@ import cn.dancingsnow.bigger_ae2.BiggerAE2Base;
 import cn.dancingsnow.bigger_ae2.BiggerAE2Mod;
 import cn.dancingsnow.bigger_ae2.block.ModCraftingUnitType;
 import cn.dancingsnow.bigger_ae2.init.ModBlocks;
+import net.fabricmc.api.EnvType;
+import net.fabricmc.api.Environment;
 import net.fabricmc.fabric.api.blockrenderlayer.v1.BlockRenderLayerMap;
 import net.fabricmc.fabric.api.client.model.ModelLoadingRegistry;
 import net.minecraft.client.renderer.RenderType;
 
+@Environment(EnvType.CLIENT)
 public class BiggerAE2Client extends BiggerAE2Base {
     public BiggerAE2Client() {
         super();
