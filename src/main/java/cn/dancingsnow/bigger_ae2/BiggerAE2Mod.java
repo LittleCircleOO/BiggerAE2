@@ -5,7 +5,6 @@ import appeng.api.storage.StorageCells;
 import appeng.api.upgrades.Upgrades;
 import appeng.core.definitions.AEItems;
 import appeng.core.localization.GuiText;
-import cn.dancingsnow.bigger_ae2.data.generator.BiggerAE2Datagen;
 import cn.dancingsnow.bigger_ae2.init.ModBlockEntities;
 import cn.dancingsnow.bigger_ae2.init.ModBlocks;
 import cn.dancingsnow.bigger_ae2.init.ModCreativeTab;
@@ -37,7 +36,6 @@ public class BiggerAE2Mod {
         initUpgrades();
         initStorageCells();
 
-        BiggerAE2Datagen.init();
     }
 
     public static ResourceLocation of(String path) {

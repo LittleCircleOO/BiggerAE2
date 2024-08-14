@@ -20,9 +20,6 @@
 		],
 		"client": [
 			"cn.dancingsnow.bigger_ae2.client.BiggerAE2Client"
-		],
-		"fabric-datagen": [
-			"cn.dancingsnow.bigger_ae2.BiggerAE2DataGenerator"
 		]
 	},
 	"mixins": [
