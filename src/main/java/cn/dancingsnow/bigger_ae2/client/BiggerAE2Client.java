@@ -1,5 +1,6 @@
 package cn.dancingsnow.bigger_ae2.client;
 
+import appeng.api.IAEAddonEntrypoint;
 import appeng.client.render.SimpleModelLoader;
 import appeng.client.render.crafting.CraftingCubeModel;
 import cn.dancingsnow.bigger_ae2.BiggerAE2Base;
@@ -13,10 +14,12 @@ import net.fabricmc.fabric.api.client.model.ModelLoadingRegistry;
 import net.minecraft.client.renderer.RenderType;
 
 @Environment(EnvType.CLIENT)
-public class BiggerAE2Client extends BiggerAE2Base {
-    public BiggerAE2Client() {
-        super();
+public class BiggerAE2Client extends BiggerAE2Base implements IAEAddonEntrypoint {
+    @Override
+    public void onAe2Initialized() {
+        super.init();
         initCraftingUnitModels();
+        BiggerAE2Mod.REGISTRATE.register();
     }
 
     private static void initCraftingUnitModels() {

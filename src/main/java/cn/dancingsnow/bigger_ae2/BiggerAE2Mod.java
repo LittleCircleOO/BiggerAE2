@@ -24,7 +24,7 @@ public class BiggerAE2Mod {
     public static final Registrate REGISTRATE = Registrate.create(MOD_ID);
 
 
-    public BiggerAE2Mod() {
+    public static void init() {
 
         ModCreativeTab.register();
         ModItems.register();

@@ -12,13 +12,13 @@
 		"sources": "https://github.com/GregTech-Exploring-Pioneer/BiggerAE2"
 	},
 	"license": "MIT",
-	"icon": "assets/bigger_ae2/icon.png",
+	"icon": "assets/bigger_ae2/textures/item/quantum_item_storage_cell.png",
 	"environment": "*",
 	"entrypoints": {
-		"main": [
-			"cn.dancingsnow.bigger_ae2.BiggerAE2Base"
+		"ae2": [
+			"cn.dancingsnow.bigger_ae2.BiggerAE2Server"
 		],
-		"client": [
+		"ae2client": [
 			"cn.dancingsnow.bigger_ae2.client.BiggerAE2Client"
 		]
 	},
