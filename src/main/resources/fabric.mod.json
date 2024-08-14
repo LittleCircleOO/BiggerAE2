@@ -8,8 +8,9 @@
 		"DancingSnow", "LittleCircle_OO"
 	],
 	"contact": {
-		"homepage": "https://github.com/GregTech-Exploring-Pioneer/BiggerAE2",
-		"sources": "https://github.com/GregTech-Exploring-Pioneer/BiggerAE2"
+		"homepage": "https://github.com/LittleCircleOO/BiggerAE2-Refabricated",
+		"sources": "https://github.com/LittleCircleOO/BiggerAE2-Refabricated",
+		"issues": "https://github.com/LittleCircleOO/BiggerAE2-Refabricated/issues"
 	},
 	"license": "MIT",
 	"icon": "assets/bigger_ae2/textures/item/quantum_item_storage_cell.png",
