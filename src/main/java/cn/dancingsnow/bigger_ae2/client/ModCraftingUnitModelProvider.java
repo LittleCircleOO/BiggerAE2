@@ -16,7 +16,7 @@ import java.util.List;
 import java.util.function.Function;
 
 public class ModCraftingUnitModelProvider extends AbstractCraftingUnitModelProvider<ModCraftingUnitType> {
-    //FIXME:When composing a full CPU, the texture of the crafting accelerator is lost
+
     private static final List<Material> MATERIALS = new ArrayList<>();
 
     private static final Material RING_CORNER = aeTexture("ring_corner");
