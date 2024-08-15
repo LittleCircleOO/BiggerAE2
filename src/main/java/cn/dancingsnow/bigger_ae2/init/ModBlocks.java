@@ -25,6 +25,8 @@ public class ModBlocks {
             provider.getVariantBuilder(ctx.get())
                 .forAllStatesExcept(state -> {
                     boolean b = state.getValue(AbstractCraftingUnitBlock.FORMED);
+                    //FIXME: Model loader 'bigger_ae2:block/crafting/4_core_crafting_accelerator_formed' not found.
+                    //       Registered loaders: porting_lib:elements, porting_lib:composite, porting_lib:fluid_container, forge:bucket
                     return ConfiguredModel.builder()
                         .modelFile(provider.models().getExistingFile(provider.modLoc(b ? formed : unformed)))
                         .build();
@@ -53,6 +55,8 @@ public class ModBlocks {
             provider.getVariantBuilder(ctx.get())
                 .forAllStatesExcept(state -> {
                     boolean b = state.getValue(AbstractCraftingUnitBlock.FORMED);
+                    //FIXME: Model loader 'bigger_ae2:block/crafting/16_core_crafting_accelerator_formed' not found.
+                    //       Registered loaders: porting_lib:elements, porting_lib:composite, porting_lib:fluid_container, forge:bucket
                     return ConfiguredModel.builder()
                         .modelFile(provider.models().getExistingFile(provider.modLoc(b ? formed : unformed)))
                         .build();
@@ -81,6 +85,8 @@ public class ModBlocks {
             provider.getVariantBuilder(ctx.get())
                 .forAllStatesExcept(state -> {
                     boolean b = state.getValue(AbstractCraftingUnitBlock.FORMED);
+                    //FIXME: Model loader 'bigger_ae2:block/crafting/64_core_crafting_accelerator_formed' not found.
+                    //       Registered loaders: porting_lib:elements, porting_lib:composite, porting_lib:fluid_container, forge:bucket
                     return ConfiguredModel.builder()
                         .modelFile(provider.models().getExistingFile(provider.modLoc(b ? formed : unformed)))
                         .build();
@@ -109,6 +115,8 @@ public class ModBlocks {
             provider.getVariantBuilder(ctx.get())
                 .forAllStatesExcept(state -> {
                     boolean b = state.getValue(AbstractCraftingUnitBlock.FORMED);
+                    //FIXME: Model loader 'bigger_ae2:block/crafting/256_core_crafting_accelerator_formed' not found.
+                    //       Registered loaders: porting_lib:elements, porting_lib:composite, porting_lib:fluid_container, forge:bucket
                     return ConfiguredModel.builder()
                         .modelFile(provider.models().getExistingFile(provider.modLoc(b ? formed : unformed)))
                         .build();
@@ -137,6 +145,8 @@ public class ModBlocks {
             provider.getVariantBuilder(ctx.get())
                 .forAllStatesExcept(state -> {
                     boolean b = state.getValue(AbstractCraftingUnitBlock.FORMED);
+                    //FIXME: Model loader 'bigger_ae2:block/crafting/1024_core_crafting_accelerator_formed' not found.
+                    //       Registered loaders: porting_lib:elements, porting_lib:composite, porting_lib:fluid_container, forge:bucket
                     return ConfiguredModel.builder()
                         .modelFile(provider.models().getExistingFile(provider.modLoc(b ? formed : unformed)))
                         .build();
