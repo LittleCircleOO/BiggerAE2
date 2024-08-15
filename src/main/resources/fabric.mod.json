@@ -16,10 +16,10 @@
 	"icon": "assets/bigger_ae2/textures/item/quantum_item_storage_cell.png",
 	"environment": "*",
 	"entrypoints": {
-		"ae2": [
+		"ae2:server": [
 			"cn.dancingsnow.bigger_ae2.BiggerAE2Server"
 		],
-		"ae2client": [
+		"ae2:client": [
 			"cn.dancingsnow.bigger_ae2.client.BiggerAE2Client"
 		]
 	},
