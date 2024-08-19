@@ -13,6 +13,8 @@ import cn.dancingsnow.bigger_ae2.item.cell.DigitalSingularityCellItem;
 import com.mojang.logging.LogUtils;
 
 import com.tterrag.registrate.Registrate;
+import net.minecraft.core.Registry;
+import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.resources.ResourceLocation;
 import org.slf4j.Logger;
 
@@ -23,13 +25,20 @@ public class BiggerAE2Mod {
 
     public static final Registrate REGISTRATE = Registrate.create(MOD_ID);
 
+    public static ResourceLocation makeId(String path) {
+        return new ResourceLocation(MOD_ID, path);
+    }
 
     public static void init() {
 
         ModCreativeTab.register();
         ModItems.register();
         ModBlocks.register();
-        ModBlockEntities.register();
+
+        //BlockEntity
+        for (var blockEntity : ModBlockEntities.getBlockEntityTypes().entrySet()) {
+            Registry.register(BuiltInRegistries.BLOCK_ENTITY_TYPE, blockEntity.getKey(), blockEntity.getValue());
+        }
 
         //REMOVED:AppliedFluxIntegration
 
