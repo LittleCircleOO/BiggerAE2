@@ -5,7 +5,6 @@ import appeng.blockentity.AEBaseBlockEntity;
 import appeng.blockentity.crafting.CraftingBlockEntity;
 import appeng.core.definitions.BlockDefinition;
 import cn.dancingsnow.bigger_ae2.BiggerAE2Mod;
-import cn.dancingsnow.bigger_ae2.block.ModCraftingUnitType;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.core.BlockPos;
@@ -16,8 +15,6 @@ import java.util.Collections;
 import java.util.Map;
 import java.util.HashMap;
 import java.util.concurrent.atomic.AtomicReference;
-
-import static cn.dancingsnow.bigger_ae2.BiggerAE2Mod.REGISTRATE;
 
 public class ModBlockEntities {
 

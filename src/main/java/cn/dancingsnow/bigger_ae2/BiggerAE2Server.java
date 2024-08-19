@@ -7,6 +7,5 @@ public class BiggerAE2Server extends BiggerAE2Base implements IAEAddonEntrypoint
     @Override
     public void onAe2Initialized() {
         super.init();
-        BiggerAE2Mod.REGISTRATE.register();
     }
 }

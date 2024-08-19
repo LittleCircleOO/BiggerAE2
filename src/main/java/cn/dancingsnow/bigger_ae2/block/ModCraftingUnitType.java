@@ -2,8 +2,8 @@ package cn.dancingsnow.bigger_ae2.block;
 
 import appeng.block.crafting.CraftingUnitBlock;
 import appeng.block.crafting.ICraftingUnitType;
+import appeng.core.definitions.BlockDefinition;
 import cn.dancingsnow.bigger_ae2.init.ModBlocks;
-import com.tterrag.registrate.util.entry.BlockEntry;
 import lombok.Getter;
 import net.minecraft.world.item.Item;
 
@@ -44,7 +44,7 @@ public enum ModCraftingUnitType implements ICraftingUnitType {
         };
     }
 
-    public BlockEntry<CraftingUnitBlock> getBlockFromType() {
+    public BlockDefinition<CraftingUnitBlock> getBlockFromType() {
         return switch (this) {
             case ACCELERATOR_4 -> ModBlocks.ACCELERATOR_4;
             case ACCELERATOR_16 -> ModBlocks.ACCELERATOR_16;

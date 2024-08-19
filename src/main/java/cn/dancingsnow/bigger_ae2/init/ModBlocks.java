@@ -1,172 +1,69 @@
 package cn.dancingsnow.bigger_ae2.init;
 
-import appeng.block.crafting.AbstractCraftingUnitBlock;
 import appeng.block.crafting.CraftingUnitBlock;
-import appeng.core.definitions.AEBlocks;
+import appeng.core.definitions.BlockDefinition;
+import appeng.block.AEBaseBlockItem;
+import cn.dancingsnow.bigger_ae2.BiggerAE2Mod;
 import cn.dancingsnow.bigger_ae2.block.ModCraftingUnitType;
-import com.tterrag.registrate.providers.RegistrateRecipeProvider;
-import com.tterrag.registrate.util.entry.BlockEntry;
-import net.minecraft.data.recipes.RecipeCategory;
-import net.minecraft.data.recipes.ShapelessRecipeBuilder;
 import net.minecraft.world.item.BlockItem;
-import io.github.fabricators_of_create.porting_lib.models.generators.ConfiguredModel;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.level.block.Block;
 
-import static cn.dancingsnow.bigger_ae2.BiggerAE2Mod.REGISTRATE;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+import java.util.function.BiFunction;
+import java.util.function.Supplier;
 
 public class ModBlocks {
 
-    public static final BlockEntry<CraftingUnitBlock> ACCELERATOR_4 = REGISTRATE
-        .block("4_core_crafting_accelerator", p -> new CraftingUnitBlock(ModCraftingUnitType.ACCELERATOR_4))
-        .blockstate((ctx, provider) -> {
-            String formed = "block/crafting/" + ctx.getName() + "_formed";
-            String unformed = "block/crafting/" + ctx.getName();
-            provider.models().cubeAll(unformed, provider.modLoc("block/crafting/" + ctx.getName()));
-            provider.models().getBuilder(formed);
-            provider.getVariantBuilder(ctx.get())
-                .forAllStatesExcept(state -> {
-                    boolean b = state.getValue(AbstractCraftingUnitBlock.FORMED);
-                    //FIXME: Model loader 'bigger_ae2:block/crafting/4_core_crafting_accelerator_formed' not found.
-                    //       Registered loaders: porting_lib:elements, porting_lib:composite, porting_lib:fluid_container, forge:bucket
-                    return ConfiguredModel.builder()
-                        .modelFile(provider.models().getExistingFile(provider.modLoc(b ? formed : unformed)))
-                        .build();
-                }, AbstractCraftingUnitBlock.POWERED);
-        })
-        .recipe((ctx, provider) -> ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, ctx.get())
-            .requires(AEBlocks.CRAFTING_ACCELERATOR)
-            .requires(AEBlocks.CRAFTING_ACCELERATOR)
-            .requires(AEBlocks.CRAFTING_ACCELERATOR)
-            .requires(AEBlocks.CRAFTING_ACCELERATOR)
-            .unlockedBy("has_item", RegistrateRecipeProvider.has(AEBlocks.CRAFTING_ACCELERATOR))
-            .save(provider))
-        .defaultLoot()
-        .item(BlockItem::new)
-        .model((ctx, provider) -> provider.withExistingParent(ctx.getName(), provider.modLoc("block/crafting/" + ctx.getName())))
-        .build()
-        .register();
+    private static final List<BlockDefinition<?>> BLOCKS = new ArrayList<>();
 
-    public static final BlockEntry<CraftingUnitBlock> ACCELERATOR_16 = REGISTRATE
-        .block("16_core_crafting_accelerator", p -> new CraftingUnitBlock(ModCraftingUnitType.ACCELERATOR_16))
-        .blockstate((ctx, provider) -> {
-            String formed = "block/crafting/" + ctx.getName() + "_formed";
-            String unformed = "block/crafting/" + ctx.getName();
-            provider.models().cubeAll(unformed, provider.modLoc("block/crafting/" + ctx.getName()));
-            provider.models().getBuilder(formed);
-            provider.getVariantBuilder(ctx.get())
-                .forAllStatesExcept(state -> {
-                    boolean b = state.getValue(AbstractCraftingUnitBlock.FORMED);
-                    //FIXME: Model loader 'bigger_ae2:block/crafting/16_core_crafting_accelerator_formed' not found.
-                    //       Registered loaders: porting_lib:elements, porting_lib:composite, porting_lib:fluid_container, forge:bucket
-                    return ConfiguredModel.builder()
-                        .modelFile(provider.models().getExistingFile(provider.modLoc(b ? formed : unformed)))
-                        .build();
-                }, AbstractCraftingUnitBlock.POWERED);
-        })
-        .recipe((ctx, provider) -> ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, ctx.get())
-            .requires(ACCELERATOR_4)
-            .requires(ACCELERATOR_4)
-            .requires(ACCELERATOR_4)
-            .requires(ACCELERATOR_4)
-            .unlockedBy("has_item", RegistrateRecipeProvider.has(ACCELERATOR_4))
-            .save(provider))
-        .defaultLoot()
-        .item(BlockItem::new)
-        .model((ctx, provider) -> provider.withExistingParent(ctx.getName(), provider.modLoc("block/crafting/" + ctx.getName())))
-        .build()
-        .register();
+    public static List<BlockDefinition<?>> getBlocks() {
+        return Collections.unmodifiableList(BLOCKS);
+    }
 
-    public static final BlockEntry<CraftingUnitBlock> ACCELERATOR_64 = REGISTRATE
-        .block("64_core_crafting_accelerator", p -> new CraftingUnitBlock(ModCraftingUnitType.ACCELERATOR_64))
-        .blockstate((ctx, provider) -> {
-            String formed = "block/crafting/" + ctx.getName() + "_formed";
-            String unformed = "block/crafting/" + ctx.getName();
-            provider.models().cubeAll(unformed, provider.modLoc("block/crafting/" + ctx.getName()));
-            provider.models().getBuilder(formed);
-            provider.getVariantBuilder(ctx.get())
-                .forAllStatesExcept(state -> {
-                    boolean b = state.getValue(AbstractCraftingUnitBlock.FORMED);
-                    //FIXME: Model loader 'bigger_ae2:block/crafting/64_core_crafting_accelerator_formed' not found.
-                    //       Registered loaders: porting_lib:elements, porting_lib:composite, porting_lib:fluid_container, forge:bucket
-                    return ConfiguredModel.builder()
-                        .modelFile(provider.models().getExistingFile(provider.modLoc(b ? formed : unformed)))
-                        .build();
-                }, AbstractCraftingUnitBlock.POWERED);
-        })
-        .recipe((ctx, provider) -> ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, ctx.get())
-            .requires(ACCELERATOR_16)
-            .requires(ACCELERATOR_16)
-            .requires(ACCELERATOR_16)
-            .requires(ACCELERATOR_16)
-            .unlockedBy("has_item", RegistrateRecipeProvider.has(ACCELERATOR_16))
-            .save(provider))
-        .defaultLoot()
-        .item(BlockItem::new)
-        .model((ctx, provider) -> provider.withExistingParent(ctx.getName(), provider.modLoc("block/crafting/" + ctx.getName())))
-        .build()
-        .register();
+    public static final BlockDefinition<CraftingUnitBlock> ACCELERATOR_4 = block(
+            "4 Core Crafting Accelerator",
+            "4_core_crafting_accelerator",
+            () -> new CraftingUnitBlock(ModCraftingUnitType.ACCELERATOR_4),
+            AEBaseBlockItem::new);
 
-    public static final BlockEntry<CraftingUnitBlock> ACCELERATOR_256 = REGISTRATE
-        .block("256_core_crafting_accelerator", p -> new CraftingUnitBlock(ModCraftingUnitType.ACCELERATOR_256))
-        .blockstate((ctx, provider) -> {
-            String formed = "block/crafting/" + ctx.getName() + "_formed";
-            String unformed = "block/crafting/" + ctx.getName();
-            provider.models().cubeAll(unformed, provider.modLoc("block/crafting/" + ctx.getName()));
-            provider.models().getBuilder(formed);
-            provider.getVariantBuilder(ctx.get())
-                .forAllStatesExcept(state -> {
-                    boolean b = state.getValue(AbstractCraftingUnitBlock.FORMED);
-                    //FIXME: Model loader 'bigger_ae2:block/crafting/256_core_crafting_accelerator_formed' not found.
-                    //       Registered loaders: porting_lib:elements, porting_lib:composite, porting_lib:fluid_container, forge:bucket
-                    return ConfiguredModel.builder()
-                        .modelFile(provider.models().getExistingFile(provider.modLoc(b ? formed : unformed)))
-                        .build();
-                }, AbstractCraftingUnitBlock.POWERED);
-        })
-        .recipe((ctx, provider) -> ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, ctx.get())
-            .requires(ACCELERATOR_64)
-            .requires(ACCELERATOR_64)
-            .requires(ACCELERATOR_64)
-            .requires(ACCELERATOR_64)
-            .unlockedBy("has_item", RegistrateRecipeProvider.has(ACCELERATOR_64))
-            .save(provider))
-        .defaultLoot()
-        .item(BlockItem::new)
-        .model((ctx, provider) -> provider.withExistingParent(ctx.getName(), provider.modLoc("block/crafting/" + ctx.getName())))
-        .build()
-        .register();
+    public static final BlockDefinition<CraftingUnitBlock> ACCELERATOR_16 = block(
+            "16 Core Crafting Accelerator",
+            "16_core_crafting_accelerator",
+            () -> new CraftingUnitBlock(ModCraftingUnitType.ACCELERATOR_16),
+            AEBaseBlockItem::new);
 
-    public static final BlockEntry<CraftingUnitBlock> ACCELERATOR_1024 = REGISTRATE
-        .block("1024_core_crafting_accelerator", p -> new CraftingUnitBlock(ModCraftingUnitType.ACCELERATOR_1024))
-        .blockstate((ctx, provider) -> {
-            String formed = "block/crafting/" + ctx.getName() + "_formed";
-            String unformed = "block/crafting/" + ctx.getName();
-            provider.models().cubeAll(unformed, provider.modLoc("block/crafting/" + ctx.getName()));
-            provider.models().getBuilder(formed);
-            provider.getVariantBuilder(ctx.get())
-                .forAllStatesExcept(state -> {
-                    boolean b = state.getValue(AbstractCraftingUnitBlock.FORMED);
-                    //FIXME: Model loader 'bigger_ae2:block/crafting/1024_core_crafting_accelerator_formed' not found.
-                    //       Registered loaders: porting_lib:elements, porting_lib:composite, porting_lib:fluid_container, forge:bucket
-                    return ConfiguredModel.builder()
-                        .modelFile(provider.models().getExistingFile(provider.modLoc(b ? formed : unformed)))
-                        .build();
-                }, AbstractCraftingUnitBlock.POWERED);
-        })
-        .recipe((ctx, provider) -> ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, ctx.get())
-            .requires(ACCELERATOR_256)
-            .requires(ACCELERATOR_256)
-            .requires(ACCELERATOR_256)
-            .requires(ACCELERATOR_256)
-            .unlockedBy("has_item", RegistrateRecipeProvider.has(ACCELERATOR_256))
-            .save(provider))
-        .defaultLoot()
-        .item(BlockItem::new)
-        .model((ctx, provider) -> provider.withExistingParent(ctx.getName(), provider.modLoc("block/crafting/" + ctx.getName())))
-        .build()
-        .register();
+    public static final BlockDefinition<CraftingUnitBlock> ACCELERATOR_64 = block(
+            "64 Core Crafting Accelerator",
+            "64_core_crafting_accelerator",
+            () -> new CraftingUnitBlock(ModCraftingUnitType.ACCELERATOR_64),
+            AEBaseBlockItem::new);
 
-    public static void register() {
+    public static final BlockDefinition<CraftingUnitBlock> ACCELERATOR_256 = block(
+            "256 Core Crafting Accelerator",
+            "256_core_crafting_accelerator",
+            () -> new CraftingUnitBlock(ModCraftingUnitType.ACCELERATOR_256),
+            AEBaseBlockItem::new);
 
+    public static final BlockDefinition<CraftingUnitBlock> ACCELERATOR_1024 = block(
+            "1024 Core Crafting Accelerator",
+            "1024_core_crafting_accelerator",
+            () -> new CraftingUnitBlock(ModCraftingUnitType.ACCELERATOR_1024),
+            AEBaseBlockItem::new);
+
+    public static <T extends Block> BlockDefinition<T> block(
+            String englishName,
+            String id,
+            Supplier<T> blockSupplier,
+            BiFunction<Block, Item.Properties, BlockItem> itemFactory) {
+        var block = blockSupplier.get();
+        var item = itemFactory.apply(block, new Item.Properties());
+
+        var definition = new BlockDefinition<>(englishName, BiggerAE2Mod.makeId(id), block, item);
+        BLOCKS.add(definition);
+        return definition;
     }
 
 }

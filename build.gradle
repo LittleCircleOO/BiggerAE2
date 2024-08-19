@@ -27,12 +27,6 @@ repositories {
         }
     }
 
-    // Registrate Refabricated is hosted on this maven.
-    maven { url = "https://mvn.devos.one/snapshots/" }
-
-    // Porting Lib
-    maven { url = "https://mvn.devos.one/releases/" }
-
 }
 
 fabricApi {
@@ -48,9 +42,6 @@ dependencies {
     // Fabric API. This is technically optional, but you probably want it anyway.
     modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
 
-    // depend on and include Registrate.
-    modImplementation(include("com.tterrag.registrate_fabric:Registrate:${project.registrate_version}"))
-
     //AE2
     modImplementation "appeng:appliedenergistics2-fabric:15.2.12"
 
@@ -58,8 +49,6 @@ dependencies {
     compileOnly 'org.projectlombok:lombok:1.18.34'
     annotationProcessor 'org.projectlombok:lombok:1.18.34'
 
-    //Porting Lib
-    modImplementation(include("io.github.fabricators_of_create.Porting-Lib:models:2.3.4+1.20.1"))
 }
 
 processResources {

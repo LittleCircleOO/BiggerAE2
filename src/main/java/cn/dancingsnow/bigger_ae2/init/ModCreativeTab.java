@@ -1,26 +1,18 @@
 package cn.dancingsnow.bigger_ae2.init;
 
 
-import cn.dancingsnow.bigger_ae2.BiggerAE2Mod;
-import com.tterrag.registrate.util.entry.RegistryEntry;
+import net.fabricmc.fabric.api.itemgroup.v1.FabricItemGroup;
+import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.CreativeModeTab;
-
-
-import static cn.dancingsnow.bigger_ae2.BiggerAE2Mod.REGISTRATE;
 
 public class ModCreativeTab {
 
-    public static final RegistryEntry<CreativeModeTab> TAB = REGISTRATE
-        .defaultCreativeTab("bigger_ae2", builder -> builder
-            .icon(ModItems.SINGULARITY_ITEM_CELL::asStack)
+    public static final CreativeModeTab TAB = FabricItemGroup.builder()
+            .title(Component.translatable("itemGroup.bigger_ae2.bigger_ae2"))
+            .icon(ModItems.SINGULARITY_ITEM_CELL::stack)
+
             .displayItems((parameters, output) -> {
-                boolean isAppliedFluxLoaded = false;
-                try {
-                    Class.forName("com.glodblock.github.appflux.common.me.key.type.FluxKeyType");
-                    isAppliedFluxLoaded = true;
-                } catch (ClassNotFoundException e) {
-                    BiggerAE2Mod.LOGGER.debug("Applied Flux not installed, passed");
-                }
+
                 output.accept(ModItems.ADVANCED_ITEM_CELL_HOUSING);
                 output.accept(ModItems.ADVANCED_FLUID_CELL_HOUSING);
 
@@ -37,13 +29,6 @@ public class ModCreativeTab {
                 output.accept(ModBlocks.ACCELERATOR_64);
                 output.accept(ModBlocks.ACCELERATOR_256);
             })
-            .build()
-        )
-        .register();
-
-    public static void register() {
-
-    }
-
+            .build();
 
 }

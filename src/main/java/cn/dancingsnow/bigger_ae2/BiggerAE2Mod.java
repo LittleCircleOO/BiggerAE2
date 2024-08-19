@@ -12,7 +12,6 @@ import cn.dancingsnow.bigger_ae2.init.ModItems;
 import cn.dancingsnow.bigger_ae2.item.cell.DigitalSingularityCellItem;
 import com.mojang.logging.LogUtils;
 
-import com.tterrag.registrate.Registrate;
 import net.minecraft.core.Registry;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.resources.ResourceLocation;
@@ -23,17 +22,25 @@ public class BiggerAE2Mod {
     public static final String MOD_ID = "bigger_ae2";
     public static final Logger LOGGER = LogUtils.getLogger();
 
-    public static final Registrate REGISTRATE = Registrate.create(MOD_ID);
-
     public static ResourceLocation makeId(String path) {
         return new ResourceLocation(MOD_ID, path);
     }
 
     public static void init() {
 
-        ModCreativeTab.register();
-        ModItems.register();
-        ModBlocks.register();
+        //Block
+        for (var block : ModBlocks.getBlocks()) {
+            Registry.register(BuiltInRegistries.BLOCK, block.id(), block.block());
+            Registry.register(BuiltInRegistries.ITEM, block.id(), block.asItem());
+        }
+
+        //Item
+        for (var item : ModItems.getItems()) {
+            Registry.register(BuiltInRegistries.ITEM, item.id(), item.asItem());
+        }
+
+        //CreativeTab
+        Registry.register(BuiltInRegistries.CREATIVE_MODE_TAB, makeId("tab"), ModCreativeTab.TAB);
 
         //BlockEntity
         for (var blockEntity : ModBlockEntities.getBlockEntityTypes().entrySet()) {

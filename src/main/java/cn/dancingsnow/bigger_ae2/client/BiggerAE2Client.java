@@ -19,7 +19,6 @@ public class BiggerAE2Client extends BiggerAE2Base implements IAEAddonEntrypoint
     public void onAe2Initialized() {
         super.init();
         initCraftingUnitModels();
-        BiggerAE2Mod.REGISTRATE.register();
     }
 
     private static void initCraftingUnitModels() {
@@ -47,10 +46,10 @@ public class BiggerAE2Client extends BiggerAE2Base implements IAEAddonEntrypoint
     }
 
     private static void setRenderLayer() {
-        BlockRenderLayerMap.INSTANCE.putBlock(ModBlocks.ACCELERATOR_4.get(), RenderType.cutout());
-        BlockRenderLayerMap.INSTANCE.putBlock(ModBlocks.ACCELERATOR_16.get(), RenderType.cutout());
-        BlockRenderLayerMap.INSTANCE.putBlock(ModBlocks.ACCELERATOR_64.get(), RenderType.cutout());
-        BlockRenderLayerMap.INSTANCE.putBlock(ModBlocks.ACCELERATOR_256.get(), RenderType.cutout());
-        BlockRenderLayerMap.INSTANCE.putBlock(ModBlocks.ACCELERATOR_1024.get(), RenderType.cutout());
+        BlockRenderLayerMap.INSTANCE.putBlock(ModBlocks.ACCELERATOR_4.block(), RenderType.cutout());
+        BlockRenderLayerMap.INSTANCE.putBlock(ModBlocks.ACCELERATOR_16.block(), RenderType.cutout());
+        BlockRenderLayerMap.INSTANCE.putBlock(ModBlocks.ACCELERATOR_64.block(), RenderType.cutout());
+        BlockRenderLayerMap.INSTANCE.putBlock(ModBlocks.ACCELERATOR_256.block(), RenderType.cutout());
+        BlockRenderLayerMap.INSTANCE.putBlock(ModBlocks.ACCELERATOR_1024.block(), RenderType.cutout());
     }
 }
