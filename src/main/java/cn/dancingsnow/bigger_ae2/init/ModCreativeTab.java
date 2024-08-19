@@ -28,6 +28,7 @@ public class ModCreativeTab {
                 output.accept(ModBlocks.ACCELERATOR_16);
                 output.accept(ModBlocks.ACCELERATOR_64);
                 output.accept(ModBlocks.ACCELERATOR_256);
+                output.accept(ModBlocks.ACCELERATOR_1024);
             })
             .build();
 
